@@ -17,5 +17,11 @@ public class Mage extends Character {
 		// TODO Auto-generated method stub
 		System.out.println("마법사가 주문을 겁니다!");
 	}
+	
+	public void display() {
+		// TODO Auto-generated method stub
+		System.out.println("이름 : "+ name +" , 레벨 : "+level );
+
+	}
 
 }

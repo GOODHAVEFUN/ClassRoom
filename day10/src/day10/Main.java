@@ -33,59 +33,55 @@ import java.util.Scanner;
 //	display() 메서드 호출 -> 각 캐릭터의 정보 출력
 //
 
-
-
 public class Main {
 	public static void main(String[] args) {
-		Character ch = new Character("이우진", 1);
-		ch.display();
-		ch.attack();
-		// Character클래스 테스트
-
-		Warrior warrior = new Warrior("전사", 10, 100, 50);
-		Mage mage = new Mage("마법사", 12, 80, 70);
-
-		warrior.attack(); // 전사가 검으로 공격합니다!
-		mage.attack(); // 마법사가 주문을 겁니다!
-
-		warrior.display(); // 이름: 전사, 레벨: 10
-		mage.display(); // 이름: 마법사, 레벨: 12
-
+		Character character = new Character("무직", 1);				
 		Scanner sc = new Scanner(System.in);
-		int choice = sc.nextInt();
+		int choice = 0;
+
 
 		System.out.println("1.게임시작");
 		System.out.println("2.게임종료");
+		System.out.print("선택 : ");
+		choice = sc.nextInt();
+		System.out.println();
 
-		while (true) {
-			switch (choice) {
-			case 1:
-				System.out.println("게임을 시작합니다");
-				System.out.println("1. 워리어");
-				System.out.println("2. 메이지");
-				int characterChoice = sc.nextInt();
-
-				if (characterChoice == 1) {
-					Warrior charater = new Warrior("전사", 10, 100, 50);
-					charater.attack();
-					charater.display();
-				} else if (characterChoice == 2) {
-					Mage charater = new Mage("마법사", 12, 80, 70);
-					charater.attack();
-					charater.display();
-				} else {
-					System.out.println("잘못된 선택입니다.");
-				}
-				break;
-			case 2:
-				System.out.println("게임을 종료합니다");
-				break;
-			default:
-				System.out.println("잘못된선택");
-				break;
+		switch (choice) {
+		case 1:
+			System.out.println("직업을 고르세요");
+			System.out.println("1. 워리어");
+			System.out.println("2. 메이지");
+			System.out.println("3. 뒤로 돌아갑니다");
+			System.out.print("선택 : ");
+			int characterChoice = sc.nextInt();
+			System.out.println();
+			if (characterChoice == 1) {
+				character = new Warrior("전사", 1, 10, 10);
+				System.out.println(character.name + "를 선택했습니다");
+			} else if (characterChoice == 2) {
+				character= new Mage("마법사", 1, 10, 10);
+				System.out.println(character.name + "를 선택했습니다");
+			} else if (characterChoice == 3) {
+				System.out.println("뒤로 돌아갑니다");
+				choice = 1;
+			} else {
+				System.out.println("잘못된 선택입니다.");
 			}
+			break;
+
+		case 2:
+			System.out.println("게임을 종료합니다");
+			return;
+
+		default:
+			System.out.println("잘못된선택");
+			break;
 		}
 
+		// 직업을 가져와 저장
+		character.display();
+		character.attack();
+		
 	}
 
 }
