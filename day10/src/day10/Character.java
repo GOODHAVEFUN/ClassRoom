@@ -3,9 +3,9 @@ package day10;
 public class Character {
 	//필드
 	String name;
-	String level;
+	int level;
 	//생성자
-	public Character(String name, String level) {
+	public Character(String name, int level) {
 		super();
 		this.name = name;
 		this.level = level;
