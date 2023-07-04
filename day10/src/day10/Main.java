@@ -2,6 +2,11 @@ package day10;
 
 import java.util.Scanner;
 
+/*
+ * 구현할기능
+ * 
+ * */
+
 public class Main {
 	public static void main(String[] args) {
 		Character character = new Character("무직", 1, 10);
@@ -120,3 +125,4 @@ public class Main {
 	}
 
 }
+
