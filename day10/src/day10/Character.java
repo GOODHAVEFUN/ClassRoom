@@ -27,7 +27,7 @@ public class Character {
 	
 	//데미지를 받았다!
 	public int hit(int dmg) {
-		System.out.println(name+"가 데미지를 받았다");
+		System.out.println(name+"가 "+dmg+"데미지를 받았다");
 		return dmg;
 		
 	}

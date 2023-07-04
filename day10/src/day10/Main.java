@@ -7,6 +7,8 @@ public class Main {
 		Character character = new Character("무직", 1, 10);
 		Scanner sc = new Scanner(System.in);
 		int choice = 0;
+		int stage = 1;
+		int round = 1;
 
 		while (true) {
 			System.out.println("1.게임시작");
@@ -56,46 +58,65 @@ public class Main {
 			character.display();
 			monster.display();
 
-			int round = 1;
-			while (true) {
+			for (int i = 0; i < 5; i++) {
+				round=1;
+				while (true) {
+					System.out.println(stage + "-" + round);
+					// 캐릭터 공격
+					character.attack();
+					monster.hit(1);
+					monster.health--;
+					character.display();
+					monster.display();
 
-				System.out.println(round + "라운드");
-				// 캐릭터 공격
-				character.attack();
-				monster.hit(1);
-				monster.health--;
-				character.display();
-				monster.display();
+					if (character.health == 0) {
+						System.out.println("게임오버");
+						break;
+					} else if (monster.health == 0) {
+						System.out.println("게임클리어");
+						// 체력 감소디스플레이를 띄운다 몬스터가 죽으면 다음 라운드로 넘어간다 캐릭터가 죽으면 게임오버가 뜨면서 게임이 종료된다
+						stage++; // 스테이지를 1 증가시킴
+						initializeCharacter(character); // 캐릭터 초기화
+						initializeMonster(monster); // 몬스터 초기화
+						break;
+					}
 
-				if (character.health == 0) {
-					System.out.println("게임오버");
-					break;
-				} else if (monster.health == 0) {
-					System.out.println("게임클리어");
-					// 체력 감소디스플레이를 띄운다 몬스터가 죽으면 다음 라운드로 넘어간다 캐릭터가 죽으면 게임오버가 뜨면서 게임이 종료된다
-					break;
+					// 몬스터 공격
+					monster.attack();
+					character.hit(1);
+					character.health--;
+					character.display();
+					monster.display();
+					if (character.health == 0) {
+						System.out.println("게임오버");
+						break;
+					} else if (monster.health == 0) {
+						System.out.println("게임클리어");
+						// 체력 감소디스플레이를 띄운다 몬스터가 죽으면 다음 라운드로 넘어간다 캐릭터가 죽으면 게임오버가 뜨면서 게임이 종료된다
+						stage++;
+						initializeCharacter(character); // 캐릭터 초기화
+						initializeMonster(monster); // 몬스터 초기화
+						break;
+					}
+					round++;
 				}
-
-				// 몬스터 공격
-				monster.attack();
-				character.hit(1);
-				character.health--;
-				character.display();
-				monster.display();
-				if (character.health == 0) {
-					System.out.println("게임오버");
-					break;
-				} else if (monster.health == 0) {
-					System.out.println("게임클리어");
-					// 체력 감소디스플레이를 띄운다 몬스터가 죽으면 다음 라운드로 넘어간다 캐릭터가 죽으면 게임오버가 뜨면서 게임이 종료된다
-					break;
-				}
-				++round;
-
+				 // 스테이지를 1 증가시킴
 			}
 
 		}
 
+	}
+
+	private static void initializeCharacter(Character character) {
+		// 초기 캐릭터 정보 설정
+		character.level++;
+		character.health = 10;
+	}
+
+	private static void initializeMonster(Monster monster) {
+		// 초기 몬스터 정보 설정
+		monster.level++;
+		monster.health = 10;
 	}
 
 }
